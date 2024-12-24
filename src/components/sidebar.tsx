@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import {
     ApartmentOutlined,
-    EditOutlined,
-    TeamOutlined,
+    EditFilled,
+    HomeOutlined,
     BellOutlined,
     HistoryOutlined,
     UserOutlined,
@@ -11,69 +11,65 @@ import {
 import '../index.css';
 
 const { Sider } = Layout;
-const fontSize = '35px';
 
 
 interface SidebarButtonProps {
     icon: React.ReactNode;
-    key: string;
+    buttonKey: string;
+    isActive: boolean;
+    onClick: (key: string) => void;
 }
 
-const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, key }) => (
+const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, buttonKey,  isActive, onClick}) => (
     <Menu.Item
-        key={key}
+        key={buttonKey}
         icon={icon}
-        className='w-100 h-50px m2'
-        style={{
-            // backgroundColor: 'red',
-        }}
+        onClick={() => onClick(buttonKey)}
+        className={`w-100 h50px m2 br0 gg sidebar-button ${isActive ? 'active-sidebar-btn' : 'inactive-sidebar-btn'}`}
     />
 );
 
 
 const Sidebar: React.FC = () => {
+    const [activeKey, setActiveKey] = useState<string>('1');
     const buttons = [
-        { key: '1', icon: <ApartmentOutlined className='h-100 w-100 sideBarButtons' />},
-        { key: '2', icon: <EditOutlined className='h-100 w-100 sideBarButtons ' /> },
-        { key: '3', icon: <TeamOutlined  className='h-100 w-100 sideBarButtons' /> },
-        { key: '4', icon: <BellOutlined  className='h-100 w-100 sideBarButtons' /> },
-        { key: '5', icon: <HistoryOutlined  className='h-100 w-100 sideBarButtons' /> },
-        { key: '6', icon: <UserOutlined  className='h-100 w-100 sideBarButtons' /> },
+        { key: '1', icon: <HomeOutlined className='h-100 w-100 sideBarButtons' /> },
+        { key: '2', icon: <EditFilled className='h-100 w-100 sideBarButtons ' /> },
+        { key: '3', icon: <ApartmentOutlined className='h-100 w-100 sideBarButtons' /> },
+        { key: '4', icon: <BellOutlined className='h-100 w-100 sideBarButtons' /> },
+        { key: '5', icon: <HistoryOutlined className='h-100 w-100 sideBarButtons' /> },
+        { key: '6', icon: <UserOutlined className='h-100 w-100 sideBarButtons' /> },
     ];
+ 
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider
                 width={80}
-                style={{
-                    background: '#6CA0BA',
-                    borderRadius: '0 10px 10px 0',
-                    position: 'fixed',
-                    height: 'fit-content',
-                    top: '25%',
-                    bottom: '25%',
-                }}
+                className='sideBarModel bg-theme'
                 collapsible={false}
             >
                 <Menu
-                    theme="dark"
+                    theme="light"
                     mode="vertical"
                     defaultSelectedKeys={['1']}
-                    style={{
-                        background: '#6CA0BA',
-                        border: 'none',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        borderRadius: '0px 20px 20px 0px',
-                        alignItems: 'center',
-                    }}
+                    className='sideBarMenu bg-theme'
+                    selectedKeys={[activeKey]}
                 >
                     {buttons.map((button) => (
-                        <SidebarButton key={button.key} icon={button.icon} />
+                        <SidebarButton 
+                        key={button.key}
+                        buttonKey={button.key}
+                        icon={button.icon} 
+                        isActive={activeKey === button.key}
+                        onClick={setActiveKey}
+                        />
                     ))}
-                </Menu>
+                  </Menu>
             </Sider>
         </Layout>
     );
 };
 
 export default Sidebar;
+
