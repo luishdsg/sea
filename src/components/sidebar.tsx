@@ -8,30 +8,28 @@ import {
     HistoryOutlined,
     UserOutlined,
 } from '@ant-design/icons';
+import SidebarButtonProps from '../interfaces/SidebarButtonProps.interface';
 import '../index.css';
 
 const { Sider } = Layout;
 
 
-interface SidebarButtonProps {
-    icon: React.ReactNode;
-    buttonKey: string;
-    isActive: boolean;
-    onClick: (key: string) => void;
-}
 
-const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, buttonKey,  isActive, onClick}) => (
+const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, buttonKey, onHoverKey, setOnHoverKey, isActive, onClick }) => (
     <Menu.Item
         key={buttonKey}
         icon={icon}
         onClick={() => onClick(buttonKey)}
-        className={`w-100 h50px m2 br0 gg sidebar-button ${isActive ? 'active-sidebar-btn' : 'inactive-sidebar-btn'}`}
+        onMouseEnter={() => setOnHoverKey(buttonKey)}
+        onMouseLeave={() => setOnHoverKey(null)}
+        className={`w-100 h50px m2 br0 gg sidebar-button ${isActive || onHoverKey  === buttonKey ? 'active-sidebar-btn' : 'inactive-sidebar-btn'}`}
     />
 );
 
 
 const Sidebar: React.FC = () => {
     const [activeKey, setActiveKey] = useState<string>('1');
+    const [onHoverKey, setOnHoverKey] = useState<string | null>(null);
     const buttons = [
         { key: '1', icon: <HomeOutlined className='h-100 w-100 sideBarButtons' /> },
         { key: '2', icon: <EditFilled className='h-100 w-100 sideBarButtons ' /> },
@@ -40,7 +38,7 @@ const Sidebar: React.FC = () => {
         { key: '5', icon: <HistoryOutlined className='h-100 w-100 sideBarButtons' /> },
         { key: '6', icon: <UserOutlined className='h-100 w-100 sideBarButtons' /> },
     ];
- 
+
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -57,15 +55,17 @@ const Sidebar: React.FC = () => {
                     selectedKeys={[activeKey]}
                 >
                     {buttons.map((button) => (
-                        <SidebarButton 
-                        key={button.key}
-                        buttonKey={button.key}
-                        icon={button.icon} 
-                        isActive={activeKey === button.key}
-                        onClick={setActiveKey}
+                        <SidebarButton
+                            key={button.key}
+                            buttonKey={button.key}
+                            icon={button.icon}
+                            isActive={activeKey === button.key}
+                            onClick={setActiveKey}
+                            onHoverKey={onHoverKey}
+                            setOnHoverKey={setOnHoverKey}
                         />
                     ))}
-                  </Menu>
+                </Menu>
             </Sider>
         </Layout>
     );
