@@ -7,5 +7,6 @@ interface SidebarButtonProps {
     onClick: (key: string) => void;
 }
 
-
-export default SidebarButtonProps;
+interface TopBarProps {
+  }
+export type {SidebarButtonProps, TopBarProps};

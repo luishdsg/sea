@@ -8,8 +8,8 @@ import {
     HistoryOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import SidebarButtonProps from '../interfaces/SidebarButtonProps.interface';
 import '../index.css';
+import { SidebarButtonProps } from '../interfaces/SidebarButtonProps.interface';
 
 const { Sider } = Layout;
 
@@ -22,7 +22,7 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, buttonKey, onHoverK
         onClick={() => onClick(buttonKey)}
         onMouseEnter={() => setOnHoverKey(buttonKey)}
         onMouseLeave={() => setOnHoverKey(null)}
-        className={`w-100 h50px m2 br0 gg sidebar-button ${isActive || onHoverKey  === buttonKey ? 'active-sidebar-btn' : 'inactive-sidebar-btn'}`}
+        className={`w-100 h50px mt-4 br0  sidebar-button ${isActive || onHoverKey  === buttonKey ? 'active-sidebar-btn' : 'inactive-sidebar-btn'}`}
     />
 );
 
@@ -41,17 +41,17 @@ const Sidebar: React.FC = () => {
 
 
     return (
-        <Layout style={{ minHeight: '100vh' }}>
+        // <Layout style={{ minHeight: '100vh' }}>
             <Sider
                 width={80}
-                className='sideBarModel bg-theme'
+                className='sideBarModel h100vh bg-theme'
                 collapsible={false}
             >
                 <Menu
                     theme="light"
                     mode="vertical"
                     defaultSelectedKeys={['1']}
-                    className='sideBarMenu bg-theme'
+                    className='sideBarMenu  bg-theme'
                     selectedKeys={[activeKey]}
                 >
                     {buttons.map((button) => (
@@ -67,7 +67,7 @@ const Sidebar: React.FC = () => {
                     ))}
                 </Menu>
             </Sider>
-        </Layout>
+        // </Layout>
     );
 };
 
