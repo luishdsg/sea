@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Steps, Typography } from 'antd';
+import { Row, Steps, Typography } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import '../index.css';
 import { TopBarProps } from '../interfaces/Props.interface';
@@ -26,11 +26,11 @@ const TopBar: React.FC<TopBarProps> = () => {
         setCurrent(index);
     };
     return (
-        <div className='shadow-lg p-4'>
+        <Row className='shadow-sm bg-light br2 p-4'>
             <Steps
                 current={current}
                 direction="horizontal"
-                className="custom-steps"
+                className=""
                 onChange={handleStepClick}
             >
                 {items.map((item, index) => (
@@ -40,7 +40,7 @@ const TopBar: React.FC<TopBarProps> = () => {
                         icon={
                             <>
                                 <button
-                                className={`edit-steps-btn mb-2 p-3 br3 }`}
+                                className={`edit-steps-btn border ${index <= current ? 'border-dark':''} mb-2 p-3 br2 }`}
                                     style={{
                                         background: index <= current ? 'var(--theme)' : 'var(--inactive)',
                                     }}
@@ -56,7 +56,7 @@ const TopBar: React.FC<TopBarProps> = () => {
                                         level={5}>{item.title}
                                     </Title>
                                     {index <= current - 1 && (
-                                        <Text style={{color: 'var(--theme)'}} className='m-0' italic>Concluído</Text>
+                                        <Text className='m-0 text-dark' italic>Concluído</Text>
                                     )}
                                 </div>
                             </>
@@ -65,7 +65,7 @@ const TopBar: React.FC<TopBarProps> = () => {
                     />
                 ))}
             </Steps>
-        </div>
+        </Row>
     );
 };
 

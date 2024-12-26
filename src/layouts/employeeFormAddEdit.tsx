@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Form, Input, Select, Switch, Radio, Button, Upload, Row, Col, Space, Checkbox, Typography, Flex } from "antd";
-import SwitchDefaultPattern from './switchDefault';
-import InputRadioGenderDefault from './inputRadioGenderDefault';
-import CPFInput from './cpfInputMask';
-import CpfInputMask from './cpfInputMask';
-import BtnDefaultPattern from './btnDefault';
+import { Form, Input, Select, Button, Row, Col, Checkbox, Typography, Flex } from "antd";
+import SwitchDefaultPattern from '../components/switchDefault';
+import InputRadioGenderDefault from '../components/inputRadioGenderDefault';
+import CpfInputMask from '../components/cpfInputMask';
+import BtnDefaultPattern from '../components/btnDefault';
+import FileUpload from '../components/inputFileDefault';
 
 
 const { Option } = Select;
@@ -29,7 +29,7 @@ const EmployeeFormAddEdit: React.FC = () => {
   return (
     <div>
       <Form
-        className='border my-3 px-4 mx-4'
+        className='my-3 px-4 mx-4'
         form={form}
         layout="vertical"
         onFinish={handleSubmit}
@@ -47,7 +47,7 @@ const EmployeeFormAddEdit: React.FC = () => {
                 </Col>
                 <Col>
                   <Form.Item name="isActive" valuePropName="checked" noStyle>
-                    <SwitchDefaultPattern checked={isChecked} onChange={setIsChecked} />
+                    <SwitchDefaultPattern on={'Ativo'} off={'Inativo'} checked={isChecked} onChange={setIsChecked} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -103,7 +103,12 @@ const EmployeeFormAddEdit: React.FC = () => {
           <Row className='border-theme shadow p-2 mb-0 mt-3 br1'>
             <Col className='px-2' span={24}>
               <Form.Item name="noEpi" valuePropName="checked">
-                <Checkbox>O trabalhador não usa EPI.</Checkbox>
+                <div className="form-check">
+                  <Input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                      O trabalhador não usa EPI.
+                    </label>
+                </div>
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -128,7 +133,6 @@ const EmployeeFormAddEdit: React.FC = () => {
                   <Form.Item
                     label="Informe o número do CA"
                     name="caNumber"
-                    rules={[{ required: true, message: "Por favor, insira o número do CA!" }]}
                   >
                     <Input maxLength={4} className=' border-theme' placeholder="Número do CA" />
                   </Form.Item>
@@ -152,25 +156,22 @@ const EmployeeFormAddEdit: React.FC = () => {
             </Col>
 
           </Row>
-          <Col  className='px-0'span={24}>
-
-          <Row className='border-theme shadow mt-4 p-3 br1'>
-            <Col span={24}>
-            <Text>Adicione Atestado de Saúde (opcional)</Text>
-              <Form.Item  name="healthCertificate">
-                <Upload>
-                  <Button>Selecionar arquivo</Button>
-                </Upload>
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Button type="primary" htmlType="submit" block>
-                Salvar
-              </Button>
-            </Col>
-          </Row>
-            </Col>
+          <Col className='px-0' span={24}>
+            <Row className='border-theme shadow mt-4 p-3 br1'>
+              <Col span={24}>
+                <Text>Adicione Atestado de Saúde (opcional)</Text>
+                <Form.Item name="healthCertificate">
+                  <FileUpload />
+                </Form.Item>
+              </Col>
             </Row>
+            <Col className='px-0 mt-4' span={24}>
+              <Flex gap="large" wrap>
+                <BtnDefaultPattern type={'submit'} styleClass="p-2 color-theme border-theme" content="Salvar" />
+              </Flex>
+            </Col>
+          </Col>
+        </Row>
       </Form>
     </div>
   );

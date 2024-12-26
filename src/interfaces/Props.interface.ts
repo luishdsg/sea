@@ -16,6 +16,8 @@ interface InputRadioGenderDefaultProps {
 }
 
 interface SwitchDefaultPatternProps {
+  on: string;
+  off: string;
   checked: boolean;
   onChange: (checked: boolean) => void
 }
