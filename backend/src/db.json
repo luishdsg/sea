@@ -1,0 +1,23 @@
+{
+    "funcionarios": [
+      {
+        "id": 1,
+        "ativo": true,
+        "nome": "João da Silva",
+        "sexo": "m",
+        "cpf": 44333111342,
+        "dataDeNascimento": "1990-05-15",
+        "rg": 3899722,
+        "cargo": "Engenheiro de Segurança",
+        "EPI": true,
+        "EPIatividades": [
+          {
+            "atividade": "Trabalho em Altura",
+            "epi": "Escalada em Torres",
+            "ca": 23234
+          }
+        ]
+      }
+    ]
+  }
+  
