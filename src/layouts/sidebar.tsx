@@ -9,7 +9,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import '../index.css';
-import { SidebarButtonProps } from '../interfaces/SidebarButtonProps.interface';
+import { SidebarButtonProps } from '../interfaces/Props.interface';
 
 const { Sider } = Layout;
 
@@ -27,7 +27,7 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, buttonKey, onHoverK
 );
 
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC = () => { 
     const [activeKey, setActiveKey] = useState<string>('1');
     const [onHoverKey, setOnHoverKey] = useState<string | null>(null);
     const buttons = [

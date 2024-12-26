@@ -7,12 +7,12 @@ import TopBar from './layouts/topBar';
 function App() {
   return (
     <Router>
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div className="bg-inactive" style={{ display: "flex", height: "100vh" }}>
       {/* Sidebar Fixa */}
       <Sidebar />
       {/* Conteúdo Rotável */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <div style={{ padding: "20px", overflow: "auto" }}>
+        <div  style={{ padding: "20px", overflow: "auto" }}>
           <Routes>
             <Route path="/" element={<EditEmployeePage />} />
           </Routes>

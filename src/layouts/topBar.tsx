@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Steps, Typography } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import '../index.css';
-import { TopBarProps } from '../interfaces/SidebarButtonProps.interface';
+import { TopBarProps } from '../interfaces/Props.interface';
 
 
 
@@ -20,9 +20,8 @@ const items = [
 ];
 
 
-const TopBar: React.FC<TopBarProps> = ({}) => {
+const TopBar: React.FC<TopBarProps> = () => {
     const [current, setCurrent] = useState(0);
-
     const handleStepClick: (index: number) => void = (index: number) => {
         setCurrent(index);
     };
