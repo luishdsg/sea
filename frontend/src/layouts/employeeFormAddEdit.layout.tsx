@@ -6,13 +6,14 @@ import CpfInputMask from '../components/cpfInputMask';
 import BtnDefaultPattern from '../components/btnDefault';
 import FileUpload from '../components/inputFileDefault';
 import { useMediaQuery } from '@react-hook/media-query';
+import { EmployeeFormAddEditProps } from '../shared/interfaces/Props.interface';
 
 
 const { Option } = Select;
 
 const { Text } = Typography;
 
-const EmployeeFormAddEdit: React.FC = () => {
+const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ }) => {
   const [form] = Form.useForm();
   const [isChecked, setIsChecked] = useState(false);
   const [cpf, setcpf] = useState<string>("");
@@ -145,7 +146,7 @@ const EmployeeFormAddEdit: React.FC = () => {
                 <Col className='px-2 align-content-center' span={isMobile ? 24 : 8} >
                   <Form.Item className='mb-0'>
                     <Flex gap="large" wrap>
-                      <BtnDefaultPattern type={'submit'} styleClass="color-theme border-theme" content="Adicionar EPI" />
+                      <BtnDefaultPattern  onClick={()=>{}} type={'submit'} styleClass="color-theme border-theme" content="Adicionar EPI" />
                     </Flex>
                   </Form.Item>
                 </Col>
@@ -155,7 +156,7 @@ const EmployeeFormAddEdit: React.FC = () => {
             <Col className='px-2 mt-4' span={24}>
               <Form.Item>
                 <Flex gap="large" wrap>
-                  <BtnDefaultPattern type={'submit'} styleClass="p-2 color-theme border-theme" content="Adicionar outra atividade" />
+                  <BtnDefaultPattern  onClick={()=>{}} type={'submit'} styleClass="p-2 color-theme border-theme" content="Adicionar outra atividade" />
                 </Flex>
               </Form.Item>
             </Col>
@@ -172,7 +173,7 @@ const EmployeeFormAddEdit: React.FC = () => {
             </Row>
             <Col className='px-0 mt-4' span={24}>
               <Flex gap="large" wrap>
-                <BtnDefaultPattern type={'submit'} styleClass="p-2 color-theme border-theme" content="Salvar" />
+                <BtnDefaultPattern  onClick={()=>{}} type={'submit'} styleClass="p-2 color-theme border-theme" content="Salvar" />
               </Flex>
             </Col>
           </Col>

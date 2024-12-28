@@ -6,7 +6,7 @@ import ComingSoon from '../layouts/comingSoon.layout';
 const HistoricPage  : React.FC = () => {
   return (
     <Layout>
-        <ComingSoon/>
+        <ComingSoon title="Página de histórico foi apagada"/>
     </Layout>
   );
 };

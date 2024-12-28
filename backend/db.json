@@ -1,0 +1,136 @@
+{
+  "employees": [
+    {
+      "id": "11",
+      "active": true,
+      "name": "Carlos Pereira",
+      "gender": "m",
+      "cpf": "98765432100",
+      "birthdayDate": "1988-11-30",
+      "rg": 7654321,
+      "position": "Eletricista",
+      "EPI": true,
+      "EPIactivities": [
+        {
+          "activities": "Trabalho com Eletricidade",
+          "epi": "Luvas Isolantes",
+          "ca": 67890
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "active": true,
+      "name": "Fernando Costa",
+      "gender": "m",
+      "cpf": "55667788990",
+      "birthdayDate": "1975-07-14",
+      "rg": 5566778,
+      "position": "Supervisor de Obras",
+      "EPI": true,
+      "EPIactivities": [
+        {
+          "activities": "Gerenciamento de Obras",
+          "epi": "Botas de Segurança",
+          "ca": 98765
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "active": false,
+      "name": "Beatriz Lima",
+      "gender": "f",
+      "cpf": "33445566778",
+      "birthdayDate": "1995-09-20",
+      "rg": 3344556,
+      "position": "Operadora de Máquinas",
+      "EPI": true,
+      "EPIactivities": [
+        {
+          "activities": "Operação de Prensas",
+          "epi": "Protetores Auditivos",
+          "ca": 11223
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "active": true,
+      "name": "Gustavo Nunes",
+      "gender": "m",
+      "cpf": "22113344556",
+      "birthdayDate": "1980-12-05",
+      "rg": 2211334,
+      "position": "Soldador",
+      "EPI": true,
+      "EPIactivities": [
+        {
+          "activities": "Solda em Aço",
+          "epi": "Máscara de Solda",
+          "ca": 77889
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "active": false,
+      "name": "Camila Alves",
+      "gender": "f",
+      "cpf": "99887766554",
+      "birthdayDate": "1993-06-18",
+      "rg": 9988776,
+      "position": "Auxiliar Administrativa",
+      "EPI": false,
+      "EPIactivities": []
+    },
+    {
+      "id": "17",
+      "active": true,
+      "name": "Rafael Moreira",
+      "gender": "m",
+      "cpf": "55443322110",
+      "birthdayDate": "1978-02-28",
+      "rg": 5544332,
+      "position": "Motorista",
+      "EPI": true,
+      "EPIactivities": [
+        {
+          "activities": "Transporte de Cargas",
+          "epi": "Cinto de Segurança",
+          "ca": 33445
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "active": false,
+      "name": "Larissa Rocha",
+      "gender": "f",
+      "cpf": "77665544332",
+      "birthdayDate": "1987-04-12",
+      "rg": 7766554,
+      "position": "Engenheira Civil",
+      "EPI": true,
+      "EPIactivities": [
+        {
+          "activities": "Inspeção de Obras",
+          "epi": "Luvas Anticorte",
+          "ca": 99887
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "active": true,
+      "name": "Pedro Matos",
+      "gender": "m",
+      "cpf": "66554433221",
+      "birthdayDate": "1982-08-25",
+      "rg": 6655443,
+      "position": "Gerente de Projetos",
+      "EPI": false,
+      "EPIactivities": []
+    }
+  ]
+}

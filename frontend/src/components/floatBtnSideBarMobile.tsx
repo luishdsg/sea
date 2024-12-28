@@ -1,6 +1,6 @@
 import React from 'react';
 import { FloatButton } from 'antd';
-import { FloatBtnSideBarMobileProps } from '../interfaces/Props.interface';
+import { FloatBtnSideBarMobileProps } from '../shared/interfaces/Props.interface';
 import { MenuOutlined } from '@ant-design/icons';
 
 const FloatBtnSideBarMobile: React.FC<FloatBtnSideBarMobileProps> = ({onClick}) => {

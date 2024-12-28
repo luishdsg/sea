@@ -9,7 +9,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import '../index.css';
-import { SidebarButtonProps } from '../interfaces/Props.interface';
+import { SidebarButtonProps } from '../shared/interfaces/Props.interface';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import FloatBtnSideBarMobile from '../components/floatBtnSideBarMobile';

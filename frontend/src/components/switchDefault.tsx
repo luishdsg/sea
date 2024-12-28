@@ -1,5 +1,5 @@
 import React from 'react';
-import { SwitchDefaultPatternProps } from '../interfaces/Props.interface';
+import { SwitchDefaultPatternProps } from '../shared/interfaces/Props.interface';
 
 const SwitchDefaultPattern: React.FC<SwitchDefaultPatternProps> = ({on, off ,checked, onChange }) => {
     return (

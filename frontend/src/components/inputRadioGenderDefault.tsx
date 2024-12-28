@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { InputRadioGenderDefaultProps } from '../interfaces/Props.interface';
+import { InputRadioGenderDefaultProps } from '../shared/interfaces/Props.interface';
 import { Col, Row } from 'antd';
 import { useMediaQuery } from '@react-hook/media-query';
 

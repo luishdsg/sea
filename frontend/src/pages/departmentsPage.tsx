@@ -6,7 +6,7 @@ import ComingSoon from '../layouts/comingSoon.layout';
 const DepartmentsPage : React.FC = () => {
   return (
     <Layout>
-        <ComingSoon/>
+        <ComingSoon title="Página do departamento engavetada"/>
     </Layout>
   );
 };

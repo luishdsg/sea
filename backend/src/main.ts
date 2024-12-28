@@ -18,11 +18,9 @@ async function bootstrap() {
     .setTitle("NestJS CRUD with Swagger")
     .setDescription("API documentation for the NestJS CRUD application")
     .setVersion("1.0")
-    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  document.security = [{ bearerAuth: [] }];
   SwaggerModule.setup("api", app, document, {
     customSiteTitle: "Minha API",
     swaggerOptions: {
@@ -30,6 +28,6 @@ async function bootstrap() {
     },
   });
 
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();

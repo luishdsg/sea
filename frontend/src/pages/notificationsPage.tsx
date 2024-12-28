@@ -6,7 +6,7 @@ import ComingSoon from '../layouts/comingSoon.layout';
 const NotificationsPage  : React.FC = () => {
   return (
     <Layout>
-        <ComingSoon/>
+        <ComingSoon title="O sininho não toca na página de notificação"/>
     </Layout>
   );
 };

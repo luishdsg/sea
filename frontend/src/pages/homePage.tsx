@@ -6,7 +6,7 @@ import ComingSoon from '../layouts/comingSoon.layout';
 const HomePage  : React.FC = () => {
   return (
      <Layout>
-        <ComingSoon/>
+        <ComingSoon title="Home page ainda não concebida"/>
     </Layout>
   );
 };

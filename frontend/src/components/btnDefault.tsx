@@ -1,5 +1,5 @@
 import React from 'react';
-import { BtnDefaultPatternProps } from '../interfaces/Props.interface';
+import { BtnDefaultPatternProps } from '../shared/interfaces/Props.interface';
 
 const BtnDefaultPattern: React.FC<BtnDefaultPatternProps> = ({type, styleClass, content, onClick }) => (
   <button onClick={onClick} 

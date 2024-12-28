@@ -1,7 +1,7 @@
 import React from 'react';
-import { CpfInputMaskProps } from '../interfaces/Props.interface';
+import { CpfInputMaskProps } from '../shared/interfaces/Props.interface';
 import { Input } from 'antd';
-import CpfInputFormatation from '../hooks/cpfInputFormatation';
+import CpfInputFormatation from '../utils/cpfInputFormatation';
 
 const CpfInputMask: React.FC<CpfInputMaskProps>  = ({ value, maxLength, onChange }) => {
       

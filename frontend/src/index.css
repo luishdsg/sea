@@ -4,6 +4,7 @@
   /* ROOT_COLORS */
   --theme: #649fbf;
   --light: #f2f2f2;
+  --active: #e0ecf2;
   --inactive: #dbdbdb;
   --gray: #adadad;
 }
@@ -18,7 +19,6 @@
   border-radius: 30px;
   border: 3px solid var(--light);
 }
-
 
 
 body {
@@ -40,12 +40,16 @@ code {
   color: black !important;
 }
 
+/* tools-utils */
 .bg-theme {
   background: var(--theme);
 }
 
 .bg-inactive {
   background: var(--inactive);
+}
+.bg-active {
+  background: var(--active);
 }
 
 .bg-white {
@@ -80,7 +84,7 @@ code {
   overflow-y: scroll;
 }
 
-.ms-less-3{
+.ms-less-3 {
   margin-left: -80px;
 }
 
@@ -150,6 +154,17 @@ code {
   color: white;
 }
 
+.btnDefaultPattern {
+  outline: none;
+  transition: .3s;
+}
+
+.btnDefaultPattern:hover {
+  transition: .5s;
+  box-shadow: 0px 4px 6px 1px var(--gray);
+}
+
+/* sidebar */
 .sideBarButtons {
   width: 3.1rem;
   font-size: 35px !important;
@@ -183,16 +198,8 @@ code {
   text-align: center;
 }
 
-.active-sidebar-btn {
-  animation: .5s;
-  transition: .5s;
-  border-left: 4px solid white;
-}
-
-.inactive-sidebar-btn {
-  animation: .5s;
-  transition: .5s;
-  border-left: 4px solid transparent;
+.sidebar-button>span {
+  display: none;
 }
 
 .edit-steps-btn {
@@ -213,21 +220,19 @@ code {
   border-color: black;
 }
 
-.sidebar-button>span {
-  display: none;
-}
-
-.btnDefaultPattern {
-  outline: none;
-  transition: .3s;
-}
-
-.btnDefaultPattern:hover {
+.active-sidebar-btn {
+  animation: .5s;
   transition: .5s;
-  box-shadow: 0px 4px 6px 1px var(--gray);
+  border-left: 4px solid white;
 }
 
-/* ss */
+.inactive-sidebar-btn {
+  animation: .5s;
+  transition: .5s;
+  border-left: 4px solid transparent;
+}
+
+/* switch */
 .custom-switch {
   display: inline-flex;
   align-items: center;
@@ -267,7 +272,7 @@ code {
   font-weight: 500;
 }
 
-/* ii */
+/* input */
 .input-select-default>div {
   border-radius: 10px !important;
   border: 1px solid var(--theme) !important;
@@ -296,3 +301,20 @@ code {
   background-size: contain;
   background-image: url('https://i.ibb.co/PYdSgjy/0f4fc0f9a2b84d907bf7416212dc9244.jpg');
 }
+
+/* delete */
+.employee-item {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.employee-item.fade-out {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+/* overwriting */
+.ant-modal-footer,
+.ant-steps-item-content {
+  display: none !important;
+}
+
