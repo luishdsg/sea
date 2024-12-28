@@ -12,7 +12,8 @@ import {
 } from "@nestjs/common";
 import { EmployeesService } from "./employees.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { EmployeesDto } from "src/shared/interfaces/employees.interface";
+import { GetEmployeesDto } from "src/shared/interfaces/employeesGet.interface";
+import { PostEmployeesDto } from "src/shared/interfaces/employeesPost.interface";
 
 @ApiTags('get')
 @Controller("employees")
@@ -22,13 +23,13 @@ export class _EmployeesController {
   @ApiResponse({ status: 200, description: 'get all employees' })
   @ApiOperation({ summary: 'get all employees' })
   @Get()
-  async getAllEmployees(@Query('_page') page: number = 1)
-  : Promise<EmployeesDto[]> {
+  async getAllEmployees()
+  : Promise<GetEmployeesDto[]> {
     try {
-      return this._employeesService.findAllPerPage(page);
+      return this._employeesService.findAll();
     } catch (error) {
-      console.error(`Error in get employees per page: ${error.message}`);
-      throw new HttpException('Error getPostComments post', HttpStatus.INTERNAL_SERVER_ERROR);
+      console.error(`Error in get all employees: ${error.message}`);
+      throw new HttpException('Error in get all employees', HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 
@@ -37,9 +38,17 @@ findOne(@Param("id") id: string) {
   return this._employeesService.findOne(+id);
 }
 
+@ApiResponse({ status: 200, description: 'create employees' })
+@ApiOperation({ summary: 'create employees' })
 @Post()
-create(@Body() createEmployeeDto: any) {
-  return this._employeesService.create(createEmployeeDto);
+async createEmployee(@Body() createEmployeeDto: PostEmployeesDto) {
+  try {
+    console.info(createEmployeeDto);
+    return this._employeesService.createEmployee(createEmployeeDto);
+  } catch (error) {
+    console.error(`Error in create employees: ${error.message}`);
+    throw new HttpException('Error in create employees', HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }
 
 @Put(":id")
@@ -54,8 +63,8 @@ async getAllEmploremoveEmployeeyees(@Param('id') _id: number) {
   try {
     return this._employeesService.deleteEmployee(_id);
   } catch (error) {
-    console.error(`Error in get employees per page: ${error.message}`);
-    throw new HttpException('Error getPostComments post', HttpStatus.INTERNAL_SERVER_ERROR);
+    console.error(`Error in delete employees: ${error.message}`);
+    throw new HttpException('Error in delete employees', HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }
 }

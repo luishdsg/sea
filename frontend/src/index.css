@@ -124,6 +124,10 @@ code {
   border: 1px solid var(--theme);
 }
 
+.border-inactive {
+  border: 1px solid var(--inactive);
+}
+
 .br2 {
   border-radius: 20px !important;
 }
@@ -276,6 +280,10 @@ code {
 .input-select-default>div {
   border-radius: 10px !important;
   border: 1px solid var(--theme) !important;
+}
+.input-select-default-inactive>div {
+  border-radius: 10px !important;
+  border: 1px solid var(--inactive) !important;
 }
 
 .input-select-default>div>span>span {

@@ -3,6 +3,7 @@ import React from 'react';
 import { InputRadioGenderDefaultProps } from '../shared/interfaces/Props.interface';
 import { Col, Row } from 'antd';
 import { useMediaQuery } from '@react-hook/media-query';
+import { EmployeesGender } from '../shared/enum/employees-gender.enum';
 
 const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ genderChange, gender }) => {
     const isMobile = useMediaQuery('(max-width: 992px)');
@@ -14,7 +15,7 @@ const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ gende
                         type="radio"
                         name="gender"
                         id="male"
-                        value="male"
+                        value={EmployeesGender.MALE}
                         checked={gender === 'male'}
                         onChange={genderChange}
                     />
@@ -28,7 +29,7 @@ const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ gende
                         type="radio"
                         name="gender"
                         id="female"
-                        value="female"
+                        value={EmployeesGender.FEMALE}
                         checked={gender === 'female'}
                         onChange={genderChange}
                     />

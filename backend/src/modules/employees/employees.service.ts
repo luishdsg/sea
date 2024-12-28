@@ -2,16 +2,17 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import axios from "axios";
 import { Observable } from "rxjs";
-import { EmployeesDto } from "src/shared/interfaces/employees.interface";
+import { GetEmployeesDto } from "src/shared/interfaces/employeesGet.interface";
+import { PostEmployeesDto } from "src/shared/interfaces/employeesPost.interface";
 
 @Injectable()
 export class EmployeesService {
   private employees = [];
   constructor(private configService: ConfigService) { }
 
-  async findAllPerPage(_page: number) {
+  async findAll() {
     try {
-      const _resEmplyeesPage = await axios.get(`${this.configService.get<string>('URI_DB_JSON')}/employees?_page=${_page}&_per_page=10`);
+      const _resEmplyeesPage = await axios.get(`${this.configService.get<string>('URI_DB_JSON')}/employees`);
       this.employees = _resEmplyeesPage.data;
       return this.employees;
     } catch (error) {
@@ -24,11 +25,17 @@ export class EmployeesService {
     return this.employees.find((employee) => employee.id === id);
   }
 
-  create(employee: any) {
-    const newEmployee = { id: Date.now(), ...employee };
-    this.employees.push(newEmployee);
-    return newEmployee;
+  async createEmployee(employee: PostEmployeesDto) {
+    try {
+      const _resEmplyeesPage = await axios.post(`${this.configService.get<string>('URI_DB_JSON')}/employees`, employee);
+      this.employees = _resEmplyeesPage.data;
+      return this.employees;
+    } catch (error) {
+      console.error(`Error in create: ${this.configService.get<string>('URI_DB_JSON')}`);
+      throw error;
+    }
   }
+  
 
   update(id: number, updateData: any) {
     const employeeIndex = this.employees.findIndex((e) => e.id === id);

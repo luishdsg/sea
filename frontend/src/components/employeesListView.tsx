@@ -3,7 +3,7 @@ import { Col, Dropdown, Flex, MenuProps, Modal, Row, Skeleton, Space, Typography
 import { MoreOutlined } from '@ant-design/icons';
 import BtnDefaultPattern from './btnDefault';
 import _getEmployeesList from '../service/getEmployeesList.service';
-import { formatCPF } from '../utils/cpfFormatation';
+import { formatCPF } from '../utils/cpfFormatation'; 
 import _deleteEmployeeService from '../service/deleteEmployee.service';
 import { EmployeesListViewProps, EmployeesProps } from '../shared/interfaces/Props.interface';
 import SwitchDefaultPattern from './switchDefault';
@@ -11,7 +11,7 @@ import SwitchDefaultPattern from './switchDefault';
 const { Title, Text } = Typography;
 
 const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggleStepEnabled }) => {
-    const { loading, hasGetMorePages, employees, _getNextPage } = _getEmployeesList();
+    const { loading, employees } = _getEmployeesList();
     const [switchEnable, setSwitchEnable] = useState<boolean>(() => {
         const savedValue = localStorage.getItem('switchEnable');
         return savedValue ? JSON.parse(savedValue) : false;
@@ -27,7 +27,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggle
 
 
     if (loading) return <Skeleton className='px-4' active />;
-    const _handleDeleteEmployee = async (id: number) => {
+    const _handleDeleteEmployee = async (id: string) => {
         try {
             const updatedEmployees = await _deleteEmployeeService(id);
             if (updatedEmployees) {
@@ -87,7 +87,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggle
                 </Col>
                 <Col span={24}>
                     <Row className="employee-list">
-                        {employeesList.map((employee) => (
+                        {employeesList.slice().reverse().map((employee) => (
                             <Col id={`employee-${employee?.id}`} key={employee?.id} className="employee-item ps-4 pe-2 py-2" span={24}>
                                 <Row className={`${employee?.active ? 'bg-active' : 'bg-inactive'} d-flex br2`}>
                                     <Col xs={21} md={22}>
@@ -106,7 +106,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggle
                                                         <Text className="m-2 bg-theme color-light text-center br2 px-3 py-1">{employee?.active ? 'Ativo' : 'Inativo'}</Text>
                                                     </Col>
                                                     <Col className="mt-2">
-                                                        <Text className="bg-theme color-light text-center br2 px-3 py-1">{employee?.position}</Text>
+                                                        <Text className="bg-theme color-light text-center br2 px-3 py-1">{employee?.role}</Text>
                                                     </Col>
                                                 </Row>
                                             </Col>
@@ -126,9 +126,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggle
                                 </Row>
                             </Col>
                         ))}
-                        {!hasGetMorePages && (
-                            <BtnDefaultPattern onClick={_getNextPage} styleClass={'mx-5 color-theme border-theme'} content={"carregar mais..."} />
-                        )}
+                        
                     </Row>
                 </Col>
                 <Col className="px-4 py-2 d-flex justify-content-end" span={24}>

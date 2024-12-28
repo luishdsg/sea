@@ -8,7 +8,7 @@ const CpfInputMask: React.FC<CpfInputMaskProps>  = ({ value, maxLength, onChange
   return (
       <Input
         type="text"
-         pattern="[0-9]*" inputMode="numeric"
+        inputMode="text"
         className="border-theme"
         placeholder="CPF"
         value={value}

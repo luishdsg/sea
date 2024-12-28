@@ -10,9 +10,9 @@ interface SidebarButtonProps {
 }
 
 interface EPIAtivity {
-  atividade: string;
-  epi: string;
-  ca: string;
+  EPIactivity: string;
+  EPIepi: string;
+  EPIca: string;
 }
 
 interface ComingSoonProps{
@@ -20,16 +20,17 @@ interface ComingSoonProps{
 }
 
 interface EmployeesProps {
-  id?: number;
+  id?: string;
   active: boolean;
   name: string;
   gender: EmployeesGender;
   cpf: string;
   birthdayDate: string;
   rg: string;
-  position: string;
+  role: string;
   EPI: boolean;
   EPIactivities?: EPIAtivity[];
+  healthCertificate?: File | null;
 }
 
 interface TopBarProps {
@@ -66,7 +67,7 @@ interface InputDefaultPatternProps {
   placeholder?: string | undefined;
 }
 interface CpfInputMaskProps {
-  value: string;
+  value?: string;
   maxLength: number;
   onChange: (value: string) => void;
 }
@@ -94,5 +95,6 @@ export type {
   StepPageProps,
   ComingSoonProps,
   EmployeeFormAddEditProps,
+  EPIAtivity,
 
 };

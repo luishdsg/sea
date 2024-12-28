@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const _deleteEmployeeService = async (id: number) => {
+const _deleteEmployeeService = async (id: string) => {
   try {
     let updatedEmployees = await axios.delete(`http://localhost:3001/employees/${id}`)
     if(updatedEmployees) return true;

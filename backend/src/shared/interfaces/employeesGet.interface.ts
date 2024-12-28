@@ -3,15 +3,15 @@ import { IsNotEmpty, IsString } from 'class-validator';
 import { EmployeesGender } from '../enum/employees-gender.enum';
 
 export class EPIAtivity {
-  activities: string;
-  epi: string;
-  ca: string;
+  EPIactivity: string;
+  EPIepi: string;
+  EPIca: string;
 }
 
-export class EmployeesDto {
+export class GetEmployeesDto {
   @ApiProperty()
   @IsNotEmpty()
-  id?: number;
+  id: string;
   @ApiProperty()
   @IsNotEmpty()
   active: boolean;
@@ -32,9 +32,12 @@ export class EmployeesDto {
   rg: string;
   @ApiProperty()
   @IsNotEmpty()
-  position: string;
+  role: string;
   @ApiProperty()
   EPI: boolean;
   @ApiProperty()
+  healthCertificate: File | null;
+  @ApiProperty()
   EPIactivities: EPIAtivity[];
+
 }

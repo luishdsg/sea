@@ -7,10 +7,12 @@ const { Text } = Typography;
 const FileUpload: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const [progress, setProgress] = useState<number>(0);
+    const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
 
     const inputFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
         if (selectedFile) {
+            if (!allowedTypes.includes(selectedFile.type)) alert("Somente arquivos (.jpg, .png ou .pdf) são permitidos!");
             setFile(selectedFile);
             uploadProgress();
         }
@@ -35,6 +37,7 @@ const FileUpload: React.FC = () => {
     return (
         <div className="w-100">
             <Input
+                accept="image/png, application/pdf image/jpeg"
                 type="file"
                 id="fileInput"
                 onChange={inputFileChange}
@@ -47,7 +50,9 @@ const FileUpload: React.FC = () => {
             ) : (
                 <Row>
                     <Col className="align-content-center" span={22}>
-                        <Text className="text-danger"> <LinkOutlined className="pe-2" />{file.name}</Text>
+                        <Text className="text-danger">
+                            <LinkOutlined className="pe-2" />{file.name}
+                        </Text>
                     </Col>
                     <Col span={2}>
                         <DeleteOutlined style={{ background: '#ff000048' }} className="p-2 br3" onClick={deleteFile} />
