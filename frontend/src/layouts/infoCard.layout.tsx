@@ -13,7 +13,7 @@ const InfoCard: React.FC = () => {
                         <Avatar
                             size={64}
                             style={{ backgroundColor: "#d9d9d9" }}
-                            icon={<img src="../assets/img/user.png" alt="Avatar" />}
+                            icon={<img src="https://twirpz.wordpress.com/wp-content/uploads/2015/06/twitter-avi-gender-balanced-figure.png" alt="Avatar" />}
                         />
                     }
                     description={
