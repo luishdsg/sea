@@ -22,7 +22,7 @@ No diretório do projeto React, você pode executar:
 #### `yarn start`
 
 Inicia o aplicativo no modo de desenvolvimento.\
-Abra [http://localhost:3002](http://localhost:3002) para visualizá-lo no navegador.
+Abra [http://localhost:3002](http://localhost:3000) para visualizá-lo no navegador.
 
 A página será recarregada se você fizer alterações no código.\
 Você também verá erros de lint no console.
@@ -85,6 +85,7 @@ $ yarn run test:e2e
 # Cobertura de testes
 $ yarn run test:cov
 ```
+O servidor estará disponível em [http://localhost:3001](http://localhost:3001).
 
 Para mais informações sobre implantação, consulte a [documentação de deployment do NestJS](https://docs.nestjs.com/deployment).
 
