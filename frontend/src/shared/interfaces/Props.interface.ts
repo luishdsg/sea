@@ -74,8 +74,6 @@ interface CpfInputMaskProps {
 
 interface EmployeeFormAddEditProps{
   id?: string;
-  onToggleEditForm?: boolean;
-
 }
 
 interface EmployeesListViewProps {

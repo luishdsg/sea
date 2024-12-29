@@ -18,7 +18,7 @@ import _putEmployeeService from '../service/putEmployee.service';
 
 const { Text } = Typography;
 
-const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id, onToggleEditForm }) => {
+const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
   const [form] = Form.useForm();
   const { _fetchEmployee } = _postEmployeeService();
   const { _catchEmployee } = _getEmployeeById();
@@ -33,6 +33,8 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id, onToggleE
   const [cpf, setcpf] = useState<string>("");
   const [gender, setGender] = useState<string>('male');
   const isMobile = useMediaQuery('(max-width: 992px)');
+
+
   useEffect(() => {
     if (id) {
       const loadEmployeeData = async () => {
@@ -44,7 +46,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id, onToggleE
           console.log('É ESSE ', employeeData)
           setReleaseEPI(true)
           setEpiFormActivate(true);
-          if(employeeData.EPI) setEpi(true)
+          if (employeeData.EPI) setEpi(true)
           setEpiActivities(employeeData.EPIactivities || []);
         } catch (error) {
           console.error("Erro ao carregar os dados do funcionário:", error);
@@ -54,24 +56,15 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id, onToggleE
     }
   }, [id]);
 
+  const _toggelgGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => setGender(event.target.value);
+  const onFinishFailed = (errorInfo: any) => console.error('Erro no envio:', errorInfo);
+  const _toggelgViewEpi = () => setBtnsEPI((prev) => !prev);
+  const handleDeleteEPIactivities = (index: number) => setEpiActivities((prev) => prev.filter((_, i) => i !== index));
+
 
   const epiChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEpiFormActivate(e.target.checked);
-    form.setFieldsValue({
-      EPI: !epiFormActivate,
-    });
-    console.error(form.getFieldValue("EPI"));
-  };
-
-  const _toggelgGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGender(event.target.value);
-  };
-  const onFinishFailed = (errorInfo: any) => {
-
-    console.error('Erro na submissão:', errorInfo);
-  };
-  const _toggelgViewEpi = () => {
-    setBtnsEPI((prev) => !prev);
+    form.setFieldsValue({EPI: !epiFormActivate,});
   };
 
   const validateForm = () => {
@@ -79,9 +72,6 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id, onToggleE
     const requiredFields = ["name", "gender", "cpf", "birthdayDate", "rg", "role"];
     const isValid = requiredFields.every((field) => formValues[field]);
     setReleaseEPI(isValid);
-  };
-  const handleDeleteEPIactivities = (index: number) => {
-    setEpiActivities((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleAddEpiActivity = () => {
@@ -151,6 +141,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id, onToggleE
     }
     window.location.reload();
   };
+
   return (
     <div>
       <Form

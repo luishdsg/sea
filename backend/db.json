@@ -12,19 +12,6 @@
       "healthCertificate": null,
       "EPIactivities": [],
       "id": "fee8"
-    },
-    {
-      "active": false,
-      "name": "3333333333333333",
-      "gender": "male",
-      "cpf": "333.333.333-33",
-      "birthdayDate": "2024-12-10",
-      "rg": "3333333",
-      "role": "Engenheiro(a) de Produção",
-      "EPI": false,
-      "healthCertificate": null,
-      "EPIactivities": [],
-      "id": "18e7"
     }
   ]
 }

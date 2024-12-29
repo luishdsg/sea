@@ -49,7 +49,7 @@ const EditEmployeePage: React.FC = () => {
                                 )}
                             </Col>
                             {editEmployeePage ? (
-                                <EmployeeFormAddEdit id={getById} onToggleEditForm={editEmployeePage}/>
+                                <EmployeeFormAddEdit id={getById}/>
                             ) : (
                                 <EmployeesListView
                                     onClick={_toggleEmployeePagesView}
