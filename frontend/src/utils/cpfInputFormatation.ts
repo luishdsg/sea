@@ -13,4 +13,7 @@ function CpfInputFormatation (e: string, onChange:(value: string) => void) {
 
   onChange(value);
 };
-export default CpfInputFormatation;
+
+export {
+   CpfInputFormatation
+}

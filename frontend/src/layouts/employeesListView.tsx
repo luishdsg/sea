@@ -105,7 +105,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
                                                 </Row>
                                                 <Row className="pb-3 px-3" >
                                                     <Col className="mt-2">
-                                                        <Text className="bg-theme color-light text-center br2 px-3 py-1">{formatCPF(employee?.cpf)}</Text>
+                                                        <Text className="bg-theme color-light text-center br2 px-3 py-1">{employee?.cpf}</Text>
                                                     </Col>
                                                     <Col className="mt-2">
                                                         <Text className="m-2 bg-theme color-light text-center br2 px-3 py-1">{employee?.active ? 'Ativo' : 'Inativo'}</Text>
