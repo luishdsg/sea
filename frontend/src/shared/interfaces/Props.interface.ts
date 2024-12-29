@@ -25,12 +25,12 @@ interface EmployeesProps {
   name: string;
   gender: EmployeesGender;
   cpf: string;
-  birthdayDate: string;
+  birthdayDate: any;
   rg: string;
   role: string;
   EPI: boolean;
   EPIactivities?: EPIAtivity[];
-  healthCertificate?: File | null;
+  healthCertificate?: File | undefined;
 }
 
 interface TopBarProps {
@@ -46,7 +46,7 @@ interface FloatBtnSideBarMobileProps {
 }
 interface InputRadioGenderDefaultProps {
   gender: string;
-  genderChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface SwitchDefaultPatternProps {
@@ -73,13 +73,19 @@ interface CpfInputMaskProps {
 }
 
 interface EmployeeFormAddEditProps{
+  id?: string;
+  onToggleEditForm?: boolean;
+
 }
 
 interface EmployeesListViewProps {
+  onId?: (value: string) => void;
   onClick?: React.MouseEventHandler<HTMLElement>;
   onToggleStepEnabled?: (value: boolean) => void;
   onFilterActive?: () => void;
   onClearFilter?: () => void;
+  onToggleEditForm?: (value: boolean) => void;
+
 }
 export type {
   SwitchDefaultPatternProps,

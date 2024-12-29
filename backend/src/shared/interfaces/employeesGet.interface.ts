@@ -26,7 +26,7 @@ export class GetEmployeesDto {
   cpf: string;
   @ApiProperty()
   @IsNotEmpty()
-  birthdayDate: string;
+  birthdayDate: any;
   @ApiProperty()
   @IsNotEmpty()
   rg: string;

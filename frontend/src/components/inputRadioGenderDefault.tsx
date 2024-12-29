@@ -5,7 +5,7 @@ import { Col, Row } from 'antd';
 import { useMediaQuery } from '@react-hook/media-query';
 import { EmployeesGender } from '../shared/enum/employees-gender.enum';
 
-const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ genderChange, gender }) => {
+const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ onChange, gender }) => {
     const isMobile = useMediaQuery('(max-width: 992px)');
     return (
             <Row className="=d-flex align-items-center">
@@ -17,7 +17,7 @@ const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ gende
                         id="male"
                         value={EmployeesGender.MALE}
                         checked={gender === 'male'}
-                        onChange={genderChange}
+                        onChange={onChange}
                     />
                     <label className="form-check-label" htmlFor="male">
                         Masculino
@@ -31,7 +31,7 @@ const InputRadioGenderDefault: React.FC<InputRadioGenderDefaultProps> = ({ gende
                         id="female"
                         value={EmployeesGender.FEMALE}
                         checked={gender === 'female'}
-                        onChange={genderChange}
+                        onChange={onChange}
                     />
                     <label className="form-check-label" htmlFor="female">
                         Feminino

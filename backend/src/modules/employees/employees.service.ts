@@ -21,8 +21,15 @@ export class EmployeesService {
     }
   }
 
-  findOne(id: number) {
-    return this.employees.find((employee) => employee.id === id);
+  async findById(id: string){
+    try {
+      const _resEmplyeesPage = await axios.get(`${this.configService.get<string>('URI_DB_JSON')}/employees/${id}`);
+      this.employees = _resEmplyeesPage.data;
+      return this.employees;
+    } catch (error) {
+      console.error(`Error in get by id: ${this.configService.get<string>('URI_DB_JSON')}`);
+      throw error;
+    }
   }
 
   async createEmployee(employee: PostEmployeesDto) {
@@ -37,20 +44,18 @@ export class EmployeesService {
   }
   
 
-  update(id: number, updateData: any) {
-    const employeeIndex = this.employees.findIndex((e) => e.id === id);
-    if (employeeIndex > -1) {
-      this.employees[employeeIndex] = {
-        ...this.employees[employeeIndex],
-        ...updateData,
-      };
-      return this.employees[employeeIndex];
+  async updateEmployee(id: string, update: PostEmployeesDto) {
+    try {
+      const _resupdateEmployee = await axios.put(`${this.configService.get<string>('URI_DB_JSON')}/employees/${id}`, update);
+      this.employees = _resupdateEmployee.data;
+      return this.employees;
+    } catch (error) {
+      console.error(`Error in create: ${this.configService.get<string>('URI_DB_JSON')}`);
+      throw error;
     }
-    return null;
   }
 
-
-  async deleteEmployee(_id: number) {
+  async deleteEmployee(_id: string) {
     try {
       const _resEmplyee = await axios.delete(`${this.configService.get<string>('URI_DB_JSON')}/employees/${_id}`);
       if(_resEmplyee) return true

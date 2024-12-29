@@ -12,6 +12,8 @@ const { Title } = Typography;
 const EditEmployeePage: React.FC = () => {
     const [editEmployeePage, setEditEmployeePage] = useState(false);
     const [stepTopBarEnabled, setStepTopBarEnabled] = useState(false);
+    const [toggleEditForm, setToggleEditForm] = useState(editEmployeePage);
+    const [getById, setGetById] = useState("");
     const [indexStepPage, setIndexStepPage] = useState(1);
     const title = ['Funcionário(as)', 'Adicionar Funcionário'];
     console.log(indexStepPage)
@@ -47,11 +49,12 @@ const EditEmployeePage: React.FC = () => {
                                 )}
                             </Col>
                             {editEmployeePage ? (
-                                <EmployeeFormAddEdit/>
+                                <EmployeeFormAddEdit id={getById} onToggleEditForm={editEmployeePage}/>
                             ) : (
                                 <EmployeesListView
                                     onClick={_toggleEmployeePagesView}
                                     onToggleStepEnabled={_toggleStepEnabled}
+                                    onId={setGetById}
                                 />
                             )}
 

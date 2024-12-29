@@ -10,7 +10,7 @@ import SwitchDefaultPattern from './switchDefault';
 
 const { Title, Text } = Typography;
 
-const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggleStepEnabled }) => {
+const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, onToggleStepEnabled }) => {
     const { loading, employees } = _getEmployeesList();
     const [switchEnable, setSwitchEnable] = useState<boolean>(() => {
         const savedValue = localStorage.getItem('switchEnable');
@@ -52,6 +52,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onClick, onToggle
         {
             label: 'Alterar',
             key: '0',
+            onClick: (e: any) => {onId?.(id); _handleNextSteps(true);  onClick?.(e || true); }
         },
         {
             type: 'divider',

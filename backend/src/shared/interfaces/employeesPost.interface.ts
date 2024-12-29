@@ -6,9 +6,6 @@ import { EPIAtivity } from './employeesGet.interface';
 export class PostEmployeesDto {
   @ApiProperty()
   @IsNotEmpty()
-//   id?: string;
-  @ApiProperty()
-  @IsNotEmpty()
   active: boolean;
   @ApiProperty()
   @IsNotEmpty()
@@ -21,7 +18,7 @@ export class PostEmployeesDto {
   cpf: string;
   @ApiProperty()
   @IsNotEmpty()
-  birthdayDate: string;
+  birthdayDate: any;
   @ApiProperty()
   @IsNotEmpty()
   rg: string;

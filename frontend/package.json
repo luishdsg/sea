@@ -1,5 +1,5 @@
 {
-  "name": "sea",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,13 +9,14 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^29.5.14",
+    "@types/moment": "^2.13.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "antd": "^5.22.6",
-    "antd-masked-input": "^1.0.1",
     "antd-style": "^3.7.1",
     "json-server": "^1.0.0-beta.3",
+    "moment": "^2.30.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
