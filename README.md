@@ -130,9 +130,9 @@ $ yarn start
 
 Agora você pode acessar:
 
-- Frontend: [http://localhost:3002](http://localhost:3002)
-- Backend: [http://localhost:2001](http://localhost:2001)
-- Banco de Dados: [http://localhost:3000](http://localhost:3000)
+- Frontend: [http://localhost:3002](http://localhost:3000)
+- Backend: [http://localhost:2001](http://localhost:3001)
+- Banco de Dados: [http://localhost:3000](http://localhost:3002)
 
 ---
 
