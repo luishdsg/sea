@@ -1,19 +1,30 @@
 import { DeleteOutlined, LinkOutlined } from "@ant-design/icons";
 import { Col, Input, Row, Typography } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { FileUploadProps } from "../shared/interfaces/Props.interface";
 
 const { Text } = Typography;
 
-const FileUpload: React.FC = () => {
+const FileUpload: React.FC<FileUploadProps> = ({ value, onChange }) => {
     const [file, setFile] = useState<File | null>(null);
     const [progress, setProgress] = useState<number>(0);
     const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
 
+    // captura o nome do arquivo do funcionário(a)
+    useEffect(() => {
+        if (value) {
+            const [name] = value.split('.');
+            const mockFile = { name: `${name}`, type: '' } as File;
+            setFile(mockFile);
+        }
+    }, [value]);
+
+    // inputa o nome do arquivo e manda para form
     const inputFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
         if (selectedFile) {
             if (!allowedTypes.includes(selectedFile.type)) alert("Somente arquivos (.jpg, .png ou .pdf) são permitidos!");
-            setFile(selectedFile);
+            if (selectedFile) setFile(selectedFile); onChange?.(`${selectedFile.name}`);
             uploadProgress();
         }
     };
@@ -21,8 +32,10 @@ const FileUpload: React.FC = () => {
     const deleteFile = () => {
         setFile(null);
         setProgress(0);
+        onChange?.('');
     };
 
+    //animação de progresso de upload do arquivo
     const uploadProgress = () => {
         let progressValue = 0;
         const interval = setInterval(() => {

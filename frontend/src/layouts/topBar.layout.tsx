@@ -8,7 +8,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 const { Title, Text } = Typography;
 const { Step } = Steps;
 
-const TopBar: React.FC<TopBarProps> = ({ indexStepPage,  stepTopBarEnabled }) => {
+const TopBar: React.FC<TopBarProps> = ({ indexStepPage, stepTopBarEnabled }) => {
     const [current, setCurrent] = useState(0);
     const isMobile = useMediaQuery('(max-width: 768px)');
     const iconSize = `${isMobile ? '10px' : '30px'}`;
@@ -23,14 +23,13 @@ const TopBar: React.FC<TopBarProps> = ({ indexStepPage,  stepTopBarEnabled }) =>
         { title: 'Item 7', icon: <HomeOutlined style={{ fontSize: iconSize }} /> },
     ];
 
-
+// Butão ativar steps
     const handleStepNext: (index: number) => void = (index: number) => {
         if (index === 0 || stepTopBarEnabled) setCurrent(index); indexStepPage(index + 1);
     };
 
     return (
         <Row className='shadow-sm topbar bg-light br2 p-4'>
-
             <Steps
                 current={current}
                 direction="horizontal"
@@ -73,12 +72,11 @@ const TopBar: React.FC<TopBarProps> = ({ indexStepPage,  stepTopBarEnabled }) =>
                                         <Text style={{ fontSize: isMobile ? '10px' : '16px', }} className='m-0 text-dark' italic>Concluído</Text>
                                     )}
                                 </div>
-                                <div style={{top: `${isMobile ? '5px' : '0'}`, transform: 'scale(1.5)', left:  `${isMobile ? '180%' : '130%'}`}} className='position-absolute color-theme'><DashOutlined /><DashOutlined /><DashOutlined /></div>
+                                <div style={{ top: `${isMobile ? '5px' : '0'}`, transform: 'scale(1.5)', left: `${isMobile ? '180%' : '130%'}` }} className='position-absolute color-theme'><DashOutlined /><DashOutlined /><DashOutlined /></div>
                             </>
                         }
                     />
                 ))}
-
             </Steps>
         </Row>
     );

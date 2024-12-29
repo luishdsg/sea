@@ -3,7 +3,7 @@ import { EmployeesProps } from '../shared/interfaces/Props.interface';
 
 const _getEmployeeById = () => {
   const _catchEmployee = async (id: string):Promise<EmployeesProps> => {
-    try {
+    try { //process.env.REACT_APP_API_URI não funcionou
       const _resEmplyee = await axios.get(`http://localhost:3001/employees/${id}`);
       console.log('byid = ',_resEmplyee.data)
       return _resEmplyee.data;
@@ -11,10 +11,7 @@ const _getEmployeeById = () => {
       throw error; 
     }
   };
-
-
   return { _catchEmployee };
-
 };
 
 export default _getEmployeeById

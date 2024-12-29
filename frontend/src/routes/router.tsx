@@ -1,4 +1,4 @@
-import EditEmployeePage from '../pages/editEmployeePage';
+import EmployeePage from '../pages/employeePage';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Sidebar from '../layouts/sidebar.layout';
 import NotFoundPage from '../pages/notFoundPage';
@@ -12,10 +12,10 @@ function Routers() {
   return (
     <Router>
       <div className="bg-inactive d-flex overflow-hidden" style={{ maxHeight: "100vh" }}>
-          <Sidebar />
+        <Sidebar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/employees" element={<EditEmployeePage />} />
+          <Route path="/employees" element={<EmployeePage />} />
           <Route path="/departments" element={<DepartmentsPage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
           <Route path="/historic" element={<HistoricPage />} />

@@ -9,13 +9,13 @@ interface SidebarButtonProps {
   onClick: (key: string) => void;
 }
 
-interface EPIAtivity {
+type EPIAtivity = {
   EPIactivity: string;
   EPIepi: string;
   EPIca: string;
 }
 
-interface ComingSoonProps{
+interface ComingSoonProps {
   title: string
 }
 
@@ -30,9 +30,15 @@ interface EmployeesProps {
   role: string;
   EPI: boolean;
   EPIactivities?: EPIAtivity[];
-  healthCertificate?: File | undefined;
+  healthCertificate?: string | null;
 }
-
+interface FileUploadProps {
+  value?:
+  {
+    split(arg0: string): [any, any]; name: string;
+  };
+  onChange?: (value: string) => void;
+}
 interface TopBarProps {
   stepTopBarEnabled: boolean;
   indexStepPage: React.Dispatch<React.SetStateAction<number>>;
@@ -72,7 +78,7 @@ interface CpfInputMaskProps {
   onChange: (value: string) => void;
 }
 
-interface EmployeeFormAddEditProps{
+interface EmployeeFormAddEditProps {
   id?: string;
 }
 
@@ -100,5 +106,5 @@ export type {
   ComingSoonProps,
   EmployeeFormAddEditProps,
   EPIAtivity,
-
+  FileUploadProps,
 };

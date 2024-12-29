@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Dropdown, Flex, MenuProps, Modal, Row, Skeleton, Space, Typography, Button } from 'antd';
 import { MoreOutlined } from '@ant-design/icons';
-import BtnDefaultPattern from './btnDefault';
+import BtnDefaultPattern from '../components/btnDefault';
 import _getEmployeesList from '../service/getEmployeesList.service';
-import { formatCPF } from '../utils/cpfFormatation'; 
+import { formatCPF } from '../utils/cpfFormatation';
 import _deleteEmployeeService from '../service/deleteEmployee.service';
 import { EmployeesListViewProps, EmployeesProps } from '../shared/interfaces/Props.interface';
-import SwitchDefaultPattern from './switchDefault';
+import SwitchDefaultPattern from '../components/switchDefault';
 
 const { Title, Text } = Typography;
 
@@ -20,12 +20,13 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
     const [employeesList, setEmployeesList] = useState<EmployeesProps[]>([]);
     const [isChecked, setIsChecked] = useState(switchEnable);
 
+    // salva estado do switch no localStorage
     useEffect(() => {
-            setEmployeesList(employees);
-            localStorage.setItem('switchEnable', JSON.stringify(switchEnable));
-    }, [employees,switchEnable]);
+        setEmployeesList(employees);
+        localStorage.setItem('switchEnable', JSON.stringify(switchEnable));
+    }, [employees, switchEnable]);
 
-
+    //carregando conteúdo - animação deletar funcionário(a)
     if (loading) return <Skeleton className='px-4' active />;
     const _handleDeleteEmployee = async (id: string) => {
         try {
@@ -43,16 +44,17 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
         }
     };
 
+    // filtar ativos - limpar filtro - ativar steps(topbar) - mudar estado do switch(sim/não)
     const _handleFilterActive = () => setEmployeesList(employees.filter((item) => item.active === true));
     const _handleClearFilter = () => setEmployeesList(employees);
-    const _handleNextSteps = (e: boolean) =>  onToggleStepEnabled?.(e); 
+    const _handleNextSteps = (e: boolean) => onToggleStepEnabled?.(e);
     const _toggleswitchEnable = () => setSwitchEnable((prev) => !prev);
 
     const itemsDropdown = (id: any): MenuProps['items'] => [
         {
             label: 'Alterar',
             key: '0',
-            onClick: (e: any) => {onId?.(id); _handleNextSteps(true);  onClick?.(e || true); }
+            onClick: (e: any) => { onId?.(id); _handleNextSteps(true); onClick?.(e || true); }
         },
         {
             type: 'divider',
@@ -68,24 +70,26 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
     return (
         <>
             <Row>
+                {/* Botões da losta de funcionários(as) */}
                 <Col span={24}>
                     <Row className="p-4">
                         <Col className="pb-4" span={24}>
                             <Flex gap="large" wrap>
-                                <Button onClick={(e) => {_handleNextSteps(true); onClick?.(e)}} className="py-4 w-100 br1 color-theme border-theme">+ Adicionar Funcionário</Button>
+                                <Button onClick={(e) => { _handleNextSteps(true); onClick?.(e) }} className="py-4 w-100 br1 color-theme border-theme">+ Adicionar Funcionário</Button>
                             </Flex>
                         </Col>
                         <Col className="pe-2 truncate" span={9}>
                             <BtnDefaultPattern onClick={_handleFilterActive} styleClass="border-theme color-theme" content="Ver apenas ativos" />
                         </Col>
                         <Col className="ps-2" span={8}>
-                            <BtnDefaultPattern onClick={_handleClearFilter}styleClass="border text-secondary border-secondary " content="Limpar filtros" />
+                            <BtnDefaultPattern onClick={_handleClearFilter} styleClass="border text-secondary border-secondary " content="Limpar filtros" />
                         </Col>
                         <Col className="text-end align-content-end" span={6}>
                             <Text>Ativos {employeesList.filter((e) => e.active).length}/{employees.length}</Text>
                         </Col>
                     </Row>
                 </Col>
+                {/* lista de funcionários(as) */}
                 <Col span={24}>
                     <Row className="employee-list">
                         {employeesList.slice().reverse().map((employee) => (
@@ -113,7 +117,7 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
                                             </Col>
                                         </Row>
                                     </Col>
-                                    <Col xs={3} md={2}className="bg-theme" style={{ borderRadius: '0px 20px 20px 0px' }}>
+                                    <Col xs={3} md={2} className="bg-theme" style={{ borderRadius: '0px 20px 20px 0px' }}>
                                         <Dropdown
                                             menu={{ items: itemsDropdown(employee?.id) }}
                                             trigger={['click']}>
@@ -127,13 +131,13 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
                                 </Row>
                             </Col>
                         ))}
-                        
+
                     </Row>
                 </Col>
                 <Col className="px-4 py-2 d-flex justify-content-end" span={24}>
                     <Text className="px-2 mt-1 ">A etapa está concluída?</Text>
                     <Space direction="vertical">
-                        <SwitchDefaultPattern on={'Sim'} off={'Não'} checked={isChecked} onChange={(e) => {_toggleswitchEnable(); setIsChecked(e); _handleNextSteps(e);}}/>
+                        <SwitchDefaultPattern on={'Sim'} off={'Não'} checked={isChecked} onChange={(e) => { _toggleswitchEnable(); setIsChecked(e); _handleNextSteps(e); }} />
                     </Space>
                 </Col>
             </Row>
@@ -142,12 +146,10 @@ const EmployeesListView: React.FC<EmployeesListViewProps> = ({ onId, onClick, on
                 centered
                 className='br2'
                 open={open}
-                onCancel={() => setOpen(false)}
-            >
+                onCancel={() => setOpen(false)}>
                 <Title level={4}>Usuário Excluido com sucesso! 👍</Title>
                 <Row><Col className='d-flex justify-content-center align-content-center' span={24}><Text onClick={() => setOpen(false)} className='br3 px-2 py-1 bg-light cursor color-theme'>Ok</Text></Col></Row>
             </Modal>
-
         </>
     );
 };

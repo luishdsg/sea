@@ -11,9 +11,26 @@ async function bootstrap() {
     origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Accept',
+      'Origin',
+      'X-Requested-With',
+      'Access-Control-Allow-Origin',
+      'Access-Control-Allow-Headers',
+      'Access-Control-Allow-Methods',
+      'Access-Control-Max-Age',
+      'X-Frame-Options',  
+      'X-Content-Type-Options',
+      'X-XSS-Protection', 
+      'Cache-Control', 
+      'Pragma',  
+      'Expires', 
+      'Set-Cookie',
+    ],
   };
   app.enableCors(corsOptions);
-
   const config = new DocumentBuilder()
     .setTitle("NestJS CRUD with Swagger")
     .setDescription("API documentation for the NestJS CRUD application")

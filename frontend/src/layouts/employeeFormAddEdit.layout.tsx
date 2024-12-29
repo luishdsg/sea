@@ -37,13 +37,13 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
 
   useEffect(() => {
     if (id) {
+      // get por id do usuário - preenchimento do form - modificação (date)
       const loadEmployeeData = async () => {
         try {
           const employeeData = await _catchEmployee(id);
           employeeData.birthdayDate = moment(employeeData.birthdayDate, "YYYY-MM-DD");
           form.setFieldsValue(employeeData);
           setGender(employeeData.gender)
-          console.log('É ESSE ', employeeData)
           setReleaseEPI(true)
           setEpiFormActivate(true);
           if (employeeData.EPI) setEpi(true)
@@ -56,17 +56,23 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
     }
   }, [id]);
 
+  // mudar genero - mostrar/ocultar btns enviar formularios - deletar EPIactivities - erro no envio - Rg somente número
   const _toggelgGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => setGender(event.target.value);
-  const onFinishFailed = (errorInfo: any) => console.error('Erro no envio:', errorInfo);
   const _toggelgViewEpi = () => setBtnsEPI((prev) => !prev);
   const handleDeleteEPIactivities = (index: number) => setEpiActivities((prev) => prev.filter((_, i) => i !== index));
-
-
-  const epiChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEpiFormActivate(e.target.checked);
-    form.setFieldsValue({EPI: !epiFormActivate,});
+  const onFinishFailed = (errorInfo: any) => console.error('Erro no envio:', errorInfo);
+  const handleRgKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!/[0-9]/.test(e.key)) e.preventDefault();
   };
 
+  // Habilitar inputs do EPIactivities
+  const epiChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEpiFormActivate(e.target.checked);
+    setEpi(e.target.checked)
+    form.setFieldsValue({ EPI: !epiFormActivate, });
+  };
+
+  // Liberar EPI para ativação
   const validateForm = () => {
     const formValues = form.getFieldsValue();
     const requiredFields = ["name", "gender", "cpf", "birthdayDate", "rg", "role"];
@@ -74,6 +80,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
     setReleaseEPI(isValid);
   };
 
+  // Adicionar atividades ao EPIactivities
   const handleAddEpiActivity = () => {
     const activity = form.getFieldValue("EPIactivity");
     const EPI = form.getFieldValue("EPIepi");
@@ -84,6 +91,8 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
       form.resetFields(["EPIactivity", "EPIepi", "EPIca"]);
     }
   };
+
+  // preparação payload POST
   const prePayloadPost = (data: any): EmployeesProps => {
     const formattedData: EmployeesProps = {
       active: data.active,
@@ -104,6 +113,8 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
 
     return formattedData;
   };
+
+  // preparação payload PUT
   const prePayloadPut = (data: any): EmployeesProps => {
     const formattedData: EmployeesProps = {
       active: data.active,
@@ -125,20 +136,18 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
     return formattedData;
   };
 
+  // Envia o formulário como um todo
   const handleFinish = async (formData: EmployeesProps) => {
     formData.EPIactivities = epiActivities;
     const formattedPayloadPost = prePayloadPost(formData);
     const formattedPayloadPut = prePayloadPut(formData);
-
-    console.warn(formattedPayloadPost);
-    console.warn(formattedPayloadPut);
-
     try {
       if (id) await _updateEmployee(id, formattedPayloadPut);
       else await _fetchEmployee(formattedPayloadPost);
     } catch (error) {
       console.error("Error submitting employee:", error);
     }
+    localStorage.setItem('switchEnable', JSON.stringify(false));
     window.location.reload();
   };
 
@@ -160,6 +169,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
         }}
       >
         <Row gutter={16}>
+          {/*Form 1° parte */}
           <Col span={24} className='border-theme shadow my-1 py-2 br1'>
             <Row align="middle" justify="space-between" gutter={16}>
               <Col className='d-flex justify-content-start' span={15}>
@@ -167,8 +177,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
               </Col>
               <Col className='d-flex justify-content-end' span={7}>
                 <Form.Item name="active" valuePropName="checked" noStyle
-                  rules={[{ required: true, type: "boolean" }]}
-                >
+                  rules={[{ required: true, type: "boolean" }]}>
                   <SwitchDefaultPattern on={'Ativo'} off={'Inativo'} checked={active} onChange={setActive} />
                 </Form.Item>
               </Col>
@@ -184,8 +193,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
               <Form.Item
                 label="Sexo"
                 name="gender"
-                rules={[{ required: true, message: "Por favor, selecione o genero!" }]}
-              >
+                rules={[{ required: true, message: "Por favor, selecione o genero!" }]}>
                 <InputRadioGenderDefault onChange={_toggelgGenderChange} gender={gender} />
               </Form.Item>
             </Col>
@@ -205,14 +213,13 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
                 className='truncate'
                 rules={[
                   { required: true, type: "date", message: "Por favor, insira a data de nascimento!" },
-                ]}
-              >
+                ]}>
                 <DatePicker onClick={(e) => { form.setFieldsValue({ birthdayDate: null }); }} format="YYYY-MM-DD" className='border-theme w-100 text-dark' />
               </Form.Item>
             </Col>
             <Col className='px-2' xs={24} md={12}>
               <Form.Item label="RG" name="rg" rules={[{ required: true, type: "string", message: "Por favor, insira o RG!" }]}>
-                <Input placeholder="RG" type='text' pattern="[0-9]*" inputMode="numeric" className='border-theme' maxLength={7} />
+                <Input placeholder="RG" onKeyDown={handleRgKeyPress} type='text' pattern="[0-9]*" inputMode="numeric" className='border-theme' maxLength={7} />
               </Form.Item>
             </Col>
             <Col className='px-2' xs={24} md={12}>
@@ -227,7 +234,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
               </Form.Item>
             </Col>
           </Row>
-          {/* EPI e EPIactivities */}
+          {/*Form 2° parte - EPI e EPIAtividades*/}
           <Row className={`${epiFormActivate ? 'border-theme' : 'border-inactive'}  shadow p-2 mb-0 mt-3 br1`}>
             <Col className='px-2' span={24}>
               <Form.Item name="EPI">
@@ -249,17 +256,17 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
                 {epiActivities.map((param, index) => (
                   <Row className='br2 shadow mx-2 my-4 bg-light border-theme px-3 py-2' key={index}>
                     <Col span={20}>
-                      <Row className='mt-2'>
-                        <Col><Text className='fw-bold'>Aividade</Text></Col>
-                        <Col><Text className='bg-theme text-light br3 ms-2 py-1 px-2'>{param.EPIactivity}</Text></Col>
+                      <Row>
+                        <Col span={24}><Text className='fw-bold'>Aividade</Text></Col>
+                        <Col span={24}><Text className='bg-theme truncate-txt text-light br3  py-1 px-2'>{param.EPIactivity}</Text></Col>
                       </Row>
-                      <Row className='mt-2'>
-                        <Col><Text className='fw-bold'>EPI</Text></Col>
-                        <Col><Text className='bg-theme text-light br3 ms-2 py-1 px-2'>{param.EPIepi}</Text></Col>
+                      <Row>
+                        <Col span={24}><Text className='fw-bold'>EPI</Text></Col>
+                        <Col span={24}><Text className='bg-theme truncate-txt text-light br3  py-1 px-2'>{param.EPIepi}</Text></Col>
                       </Row>
-                      <Row className='mt-2'>
-                        <Col><Text className='fw-bold'>CA</Text></Col>
-                        <Col><Text className='bg-theme text-light br3 ms-2 py-1 px-2'>{param.EPIca}</Text></Col>
+                      <Row>
+                        <Col span={24}><Text className='fw-bold'>CA</Text></Col>
+                        <Col span={24}><Text className='bg-theme text-light br3  py-1 px-2'>{param.EPIca}</Text></Col>
                       </Row>
                     </Col>
                     <Col span={4} className="text-end">
@@ -273,6 +280,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
                   </Row>
                 ))}
               </Col>
+              {/*Form 3° parte - botões e files */}
               {!btnsEPI ? (
                 <Row className={`${epiFormActivate ? 'border-theme' : 'border-inactive'}  shadow mx-2 p-2 mb-0 br1`}>
                   <Col className='px-2' span={24}>
@@ -298,7 +306,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
                     </Form.Item>
                   </Col>
                   <Col className='px-2' span={isMobile ? 24 : 8} >
-                    <Form.Item
+                    <Form.Item className='truncate'
                       label="Informe o número do CA"
                       name="EPIca">
                       <Input maxLength={4} disabled={!epiFormActivate} className={`${epiFormActivate ? 'border-theme' : 'border-inactive'}`} placeholder="Número do CA" />
@@ -320,9 +328,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
               ) : (
                 <></>
               )}
-
             </Col>
-
             <Col className='px-2 mt-4' span={24}>
               <Form.Item>
                 <Flex gap="large" wrap>
@@ -334,13 +340,12 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
                 </Flex>
               </Form.Item>
             </Col>
-
           </Row>
           <Col className='px-0' span={24}>
             <Row className='border-theme shadow mt-4 p-3 br1'>
               <Col span={24}>
                 <Text>Adicione Atestado de Saúde (opcional)</Text>
-                <Form.Item name="healthCertificate">
+                <Form.Item rules={[{ required: false }]} valuePropName="value" name="healthCertificate">
                   <FileUpload />
                 </Form.Item>
               </Col>
@@ -356,16 +361,4 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
     </div>
   );
 };
-
 export default EmployeeFormAddEdit;
-// const onFinish = (values) => {
-//   const payload = {
-//     ...values,
-//     birthdayDate: values.birthdayDate
-//       ? values.birthdayDate.format("YYYY-MM-DD")
-//       : null,
-//   };
-
-//   console.log("Dados para enviar:", payload);
-//   // Enviar payload ao backend
-// };

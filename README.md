@@ -1,121 +1,150 @@
 # Full-Stack Application Documentation
+## Guia de Inicialização do Projeto
 
-## Overview
-This project is a full-stack application that includes:
-- A **React** frontend.
-- A **NestJS** backend.
-- A **JSON-Server** database.
+Este projeto utiliza uma aplicação React no frontend, um servidor NestJS no backend, e um banco de dados simulado com JSON-Server. Siga as instruções abaixo para configurar e executar o sistema.
 
-### Ports Configuration
-- **Frontend (React)**: Runs on [http://localhost:3002](http://localhost:3002).
-- **Backend (NestJS)**: Runs on [http://localhost:3001](http://localhost:2001).
-- **Database (JSON-Server)**: Runs on [http://localhost:3000](http://localhost:3000).
+## Estrutura do Projeto
+
+- **Frontend (React)**: Porta `3000`
+- **Backend (NestJS)**: Porta `2001`
+- **Banco de Dados (JSON-Server)**: Porta `3002`
 
 ---
 
-## Frontend: React Application
+# Configuração do Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi iniciado com [Create React App](https://github.com/facebook/create-react-app).
 
-### Available Scripts
+### Scripts Disponíveis
 
-In the project directory, you can run:
+No diretório do projeto React, você pode executar:
 
 #### `yarn start`
-Runs the app in development mode. Open [http://localhost:3002](http://localhost:3002) to view it in the browser. The page will reload if you make edits.
+
+Inicia o aplicativo no modo de desenvolvimento.\
+Abra [http://localhost:3002](http://localhost:3002) para visualizá-lo no navegador.
+
+A página será recarregada se você fizer alterações no código.\
+Você também verá erros de lint no console.
 
 #### `yarn test`
-Launches the test runner in the interactive watch mode. Refer to the [testing documentation](https://facebook.github.io/create-react-app/docs/running-tests) for more details.
+
+Inicia o executor de testes no modo interativo de observação.\
+Consulte a seção sobre [testes](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
 
 #### `yarn build`
-Builds the app for production to the `build` folder. It bundles React in production mode and optimizes the build for the best performance. Refer to the [deployment documentation](https://facebook.github.io/create-react-app/docs/deployment) for more details.
+
+Constrói o aplicativo para produção na pasta `build`.\
+Agrupa o React em modo de produção e otimiza a compilação para o melhor desempenho.
+
+O build é minimizado e os nomes dos arquivos incluem os hashes.\
+Seu aplicativo está pronto para ser implantado!
+
+Consulte a seção sobre [implantação](https://facebook.github.io/create-react-app/docs/deployment) para mais informações.
 
 #### `yarn eject`
-**Note: This is a one-way operation. Once you `eject`, you can’t go back!**
 
-### Learn More
+**Nota: esta é uma operação sem retorno. Uma vez que você `eject`, não pode voltar!**
 
-- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-- [React Documentation](https://reactjs.org/).
+Se você não estiver satisfeito com a ferramenta de construção e as escolhas de configuração, você pode `eject` a qualquer momento. Este comando copiará todos os arquivos de configuração e dependências transitivas (Webpack, Babel, ESLint, etc.) diretamente para o seu projeto, dando total controle sobre eles.
 
 ---
 
-## Backend: NestJS Application
+# Configuração do Backend
 
-[NestJS](https://nestjs.com/) is a progressive Node.js framework for building efficient and scalable server-side applications.
+O backend utiliza o framework [NestJS](https://nestjs.com) para construir uma API eficiente e escalável.
 
-### Setup
+### Instalação
 
-#### Install dependencies:
 ```bash
-yarn install
+$ yarn install
 ```
 
-#### Compile and run the project:
+### Executando o Servidor
+
 ```bash
-# Development mode
-yarn run start
+# Modo de desenvolvimento
+$ yarn run start
 
-# Watch mode
-yarn run start:dev
+# Modo de observação
+$ yarn run start:dev
 
-# Production mode
-yarn run start:prod
+# Modo de produção
+$ yarn run start:prod
 ```
 
-#### Run tests:
+### Testes
+
 ```bash
-# Unit tests
-yarn run test
+# Testes unitários
+$ yarn run test
 
-# End-to-end tests
-yarn run test:e2e
+# Testes end-to-end
+$ yarn run test:e2e
 
-# Test coverage
-yarn run test:cov
+# Cobertura de testes
+$ yarn run test:cov
 ```
 
-### Deployment
-For deployment guides, check out the [NestJS Deployment Documentation](https://docs.nestjs.com/deployment).
+Para mais informações sobre implantação, consulte a [documentação de deployment do NestJS](https://docs.nestjs.com/deployment).
 
 ---
 
-## Database: JSON-Server
+## Configuração do Banco de Dados
 
-The project uses a JSON-Server as the database, running on [http://localhost:3000](http://localhost:3000).
+Este projeto utiliza o [JSON-Server](https://github.com/typicode/json-server) como banco de dados simulado.
 
-### Setup
-#### Install JSON-Server:
+### Configuração
+
+1. Certifique-se de que o arquivo `db.json` contém os dados necessários para sua aplicação.
+2. No diretório do banco de dados, execute:
+
 ```bash
-npm install -g json-server
+$ yarn json
 ```
 
-#### Run the server:
-```bash
-json-server --watch db.json --port 3000
-```
+O servidor estará disponível em [http://localhost:3002](http://localhost:3002).
 
 ---
 
-## How to Use
-1. Start the database:
-   ```bash
-   json-server --watch db.json --port 3000
-   ```
-2. Start the backend:
-   ```bash
-   yarn run start:dev
-   ```
-3. Start the frontend:
-   ```bash
-   yarn start
-   ```
+## Fluxo de Execução Completo
 
-You can now access the application by navigating to [http://localhost:3002](http://localhost:3002).
+1. Inicie o banco de dados no backend JSON-Server:
+
+```bash
+$ yarn json
+```
+
+2. Inicie o backend NestJS:
+
+```bash
+$ yarn run start:dev
+```
+
+3. Inicie o frontend React:
+
+```bash
+$ yarn start
+```
+
+Agora você pode acessar:
+
+- Frontend: [http://localhost:3002](http://localhost:3002)
+- Backend: [http://localhost:2001](http://localhost:2001)
+- Banco de Dados: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## License
-This project is licensed under the MIT License. Refer to the `LICENSE` file for details.
+## Recursos Úteis
+
+- Documentação React: [React Documentation](https://reactjs.org/)
+- Documentação NestJS: [NestJS Documentation](https://docs.nestjs.com/)
+- Documentação JSON-Server: [JSON-Server Documentation](https://github.com/typicode/json-server)
+
+---
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
 
 # Made With 🥔 By Luis.H

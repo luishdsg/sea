@@ -21,27 +21,18 @@ const InfoCard: React.FC = () => {
                             <Text className="text-secondary ">
                                 Meu coração está firme, ó Deus!
                                 Cantarei e louvarei, ó Glória minha!
-
-                                2Acordem, harpa e lira!
+                                Acordem, harpa e lira!
                                 Despertarei a alvorada.
-
-                                3Eu te darei graças, ó Senhor, entre os povos;
+                                Eu te darei graças, ó Senhor, entre os povos;
                                 cantarei louvores entre as nações,
-
-                                4porque o teu amor leal
+                                porque o teu amor leal
                                 se eleva muito acima dos céus;
                                 a tua fidelidade alcança as nuvens!
-
-                                5Sê exaltado, ó Deus, acima dos céus;
+                                Sê exaltado, ó Deus, acima dos céus;
                                 estenda-se a tua glória sobre toda a terra!
-
-                                6Salva-nos com a tua mão direita
+                                Salva-nos com a tua mão direita
                                 e responde-nos,
                                 para que sejam libertos aqueles a quem amas.
-
-                                7Do seu santuário Deus falou:
-                                "No meu triunfo dividirei Siquém
-                                e repartirei o vale de Sucote.
                             </Text>
                         </div>
                     }

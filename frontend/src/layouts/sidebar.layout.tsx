@@ -8,11 +8,11 @@ import {
     HistoryOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import '../index.css';
 import { SidebarButtonProps } from '../shared/interfaces/Props.interface';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import FloatBtnSideBarMobile from '../components/floatBtnSideBarMobile';
+import '../index.css';
 
 const { Sider } = Layout;
 
@@ -31,7 +31,6 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, buttonKey, onHoverK
 
 
 const Sidebar: React.FC = () => {
-    const [activeKey, setActiveKey] = useState<string>('1');
     const [onHoverKey, setOnHoverKey] = useState<string | null>(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -44,7 +43,6 @@ const Sidebar: React.FC = () => {
     }, [isMobile]);
 
 
-    console.log(iscolapseSideBarMobile, '<br/', isMobile)
     const buttons = [
         { key: '1', icon: <HomeOutlined className='h-100 sideBarButtons' />, title: "Home", route: '/' },
         { key: '2', icon: <EditFilled className='h-100  sideBarButtons ' />, title: "Funcionario(as)", route: '/employees' },
@@ -56,16 +54,12 @@ const Sidebar: React.FC = () => {
 
     const linkNavigation = (key: string) => {
         const button = buttons.find((btn) => btn.key === key);
-        if (button?.route) {
-            navigate(button.route);
-            setActiveKey(key);
-        }
+        if (button?.route) navigate(button.route);
     };
 
+    // esconder sidebar no modo mobile
     const colapseSideBarMobile = () => {
-        if (isMobile) {
-            setIscolapseSideBarMobile(!iscolapseSideBarMobile);
-        }
+        if (isMobile) setIscolapseSideBarMobile(!iscolapseSideBarMobile);
     }
 
     return (
@@ -98,6 +92,7 @@ const Sidebar: React.FC = () => {
                     </Tooltip>
                 ))}
             </Menu>
+            {/* menu no modo mobile */}
             {isMobile ? (
                 <FloatBtnSideBarMobile onClick={colapseSideBarMobile} />
             ) : (

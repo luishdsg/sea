@@ -1,7 +1,7 @@
 import React from 'react';
 import { StepPageProps } from '../shared/interfaces/Props.interface';
 import ComingSoon from '../layouts/comingSoon.layout';
-import { Col, Layout, Row } from 'antd';
+import { Layout } from 'antd';
 
 
 

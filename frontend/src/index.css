@@ -94,6 +94,18 @@ code {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 0px !important;
+}
+.truncate > div > div  {
+  padding: 0 !important;
+}
+
+.truncate-txt{
+  max-width: 150px;
+  display: inline-block !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cursor {

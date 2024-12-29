@@ -2,16 +2,35 @@
   "employees": [
     {
       "active": true,
-      "name": "P.Diddy",
+      "name": "Terry Chris",
       "gender": "female",
-      "cpf": "333.333.333-33",
-      "birthdayDate": "2024-12-11",
-      "rg": "2222222",
-      "role": "Desenvolvedor(a) Full Stack",
+      "cpf": "000.000.000-00",
+      "birthdayDate": "2024-12-03",
+      "rg": "5555555",
+      "role": "Engenheiro(a) de Produção",
       "EPI": true,
       "healthCertificate": null,
+      "EPIactivities": [
+        {
+          "EPIactivity": "Manutenção de sistemas existentes",
+          "EPIepi": "Ferramenta de gerenciamento de tarefas ",
+          "EPIca": "0000"
+        }
+      ],
+      "id": "ea4e"
+    },
+    {
+      "active": false,
+      "name": "Katy Perry",
+      "gender": "female",
+      "cpf": "111.111.111-11",
+      "birthdayDate": "2003-05-07",
+      "rg": "1231231",
+      "role": "Desenvolvedor(a) Full Stack",
+      "EPI": false,
+      "healthCertificate": "Sem título.png",
       "EPIactivities": [],
-      "id": "fee8"
+      "id": "e293"
     }
   ]
 }

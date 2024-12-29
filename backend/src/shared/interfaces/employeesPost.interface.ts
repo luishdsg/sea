@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 import { EmployeesGender } from '../enum/employees-gender.enum';
 import { EPIAtivity } from './employeesGet.interface';
 
@@ -28,7 +28,7 @@ export class PostEmployeesDto {
   @ApiProperty()
   EPI: boolean;
   @ApiProperty()
-  healthCertificate: File | null;
+  healthCertificate: string | null;
   @ApiProperty()
   EPIactivities: EPIAtivity[];
 
