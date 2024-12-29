@@ -8,7 +8,7 @@ This project is a full-stack application that includes:
 
 ### Ports Configuration
 - **Frontend (React)**: Runs on [http://localhost:3002](http://localhost:3002).
-- **Backend (NestJS)**: Runs on [http://localhost:2001](http://localhost:2001).
+- **Backend (NestJS)**: Runs on [http://localhost:3001](http://localhost:2001).
 - **Database (JSON-Server)**: Runs on [http://localhost:3000](http://localhost:3000).
 
 ---
