@@ -5,9 +5,9 @@ Este projeto utiliza uma aplicação React no frontend, um servidor NestJS no ba
 
 ## Estrutura do Projeto
 
-- **Frontend (React)**: Porta `3000`
-- **Backend (NestJS)**: Porta `2001`
-- **Banco de Dados (JSON-Server)**: Porta `3002`
+- **Frontend (React)**: Porta `3002`
+- **Backend (NestJS)**: Porta `3001`
+- **Banco de Dados (JSON-Server)**: Porta `3000`
 
 ---
 
