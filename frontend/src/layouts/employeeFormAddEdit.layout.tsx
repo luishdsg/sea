@@ -214,7 +214,7 @@ const EmployeeFormAddEdit: React.FC<EmployeeFormAddEditProps> = ({ id }) => {
                 rules={[
                   { required: true, type: "date", message: "Por favor, insira a data de nascimento!" },
                 ]}>
-                <DatePicker onClick={(e) => { form.setFieldsValue({ birthdayDate: null }); }} format="YYYY-MM-DD" className='border-theme w-100 text-dark' />
+                <DatePicker onClick={(e) => { form.setFieldsValue({ birthdayDate: null }); }} placeholder="Selecione a data" format="YYYY-MM-DD" className='border-theme w-100 text-dark' />
               </Form.Item>
             </Col>
             <Col className='px-2' xs={24} md={12}>

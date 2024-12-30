@@ -22,12 +22,12 @@ const EmployeePage: React.FC = () => {
     
 
     return (
-        <main className="container overflow-y-scroll overflow-x-hidden my-5 pb-5 h100vh">
+        <main className="container  overflow-y-scroll overflow-x-hidden my-5 pb-5 h100vh">
             <nav>
                 <TopBar indexStepPage={setIndexStepPage} stepTopBarEnabled={stepTopBarEnabled} />
             </nav>
             {indexStepPage === 1 ? (
-                <Row className="mb-5 pb-5">
+                <Row className="mb-5  pb-5">
                     <Col xs={24} md={9}>
                         <InfoCard />
                     </Col>

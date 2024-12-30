@@ -5,9 +5,9 @@ Este projeto utiliza uma aplicação React no frontend, um servidor NestJS no ba
 
 ## Estrutura do Projeto
 
-- **Frontend (React)**: Porta `3002`
+- **Frontend (React)**: Porta `3000`
 - **Backend (NestJS)**: Porta `3001`
-- **Banco de Dados (JSON-Server)**: Porta `3000`
+- **Banco de Dados (JSON-Server)**: Porta `3002`
 
 ---
 
@@ -22,7 +22,7 @@ No diretório do projeto React, você pode executar:
 #### `yarn start`
 
 Inicia o aplicativo no modo de desenvolvimento.\
-Abra [http://localhost:3002](http://localhost:3000) para visualizá-lo no navegador.
+Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
 
 A página será recarregada se você fizer alterações no código.\
 Você também verá erros de lint no console.
@@ -130,9 +130,9 @@ $ yarn start
 
 Agora você pode acessar:
 
-- Frontend: [http://localhost:3002](http://localhost:3000)
-- Backend: [http://localhost:2001](http://localhost:3001)
-- Banco de Dados: [http://localhost:3000](http://localhost:3002)
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend: [http://localhost:3001](http://localhost:3001)
+- Banco de Dados: [http://localhost:3002](http://localhost:3002)
 
 ---
 

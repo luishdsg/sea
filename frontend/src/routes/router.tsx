@@ -11,7 +11,7 @@ import ProfilePage from '../pages/profilePage';
 function Routers() {
   return (
     <Router>
-      <div className="bg-inactive d-flex overflow-hidden" style={{ maxHeight: "100vh" }}>
+      <main className="main d-flex overflow-hidden" style={{ maxHeight: "100vh" }}>
         <Sidebar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -22,7 +22,7 @@ function Routers() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </div>
+      </main>
     </Router>
   );
 }

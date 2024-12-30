@@ -6,7 +6,7 @@ import { ComingSoonProps } from '../shared/interfaces/Props.interface';
 
 const ComingSoon: React.FC<ComingSoonProps> = ({ title }) => {
     return (
-        <Row className='p-3 bg-inactive h100vh'>
+        <Row className='p-3 bg-light h100vh'>
             <Col span={24}>
                 <Tooltip title={title}>
                     <span>
