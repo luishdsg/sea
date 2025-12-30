@@ -4,7 +4,7 @@ import { EmployeesProps } from '../shared/interfaces/Props.interface';
 const _putEmployeeService = () => {
   const _updateEmployee = async (id:string, body: EmployeesProps) => {
     try { //process.env.REACT_APP_API_URI não funcionou
-      const _resEmplyee = await axios.put(`http://localhost:3001/employees/${id}`, body);
+      const _resEmplyee = await axios.put(`${process.env.REACT_APP_API_URI}/employees/${id}`, body);
       return _resEmplyee.data;
     } catch (error) {
       throw error; 
