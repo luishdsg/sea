@@ -98,7 +98,7 @@ Este projeto utiliza o [JSON-Server](https://github.com/typicode/json-server) co
 ### Configuração
 
 1. Certifique-se de que o arquivo `db.json` contém os dados necessários para sua aplicação.
-2. No diretório do banco de dados, execute:
+2. No diretório do banco de dados em backend, execute:
 
 ```bash
 $ yarn json
